@@ -1,0 +1,5 @@
+set (BPP_OS FreeRTOS)
+set (IDF_TARGET esp32)
+set (CMAKE_TOOLCHAIN_FILE $ENV{IDF_PATH}//tools/cmake/toolchain-esp32.cmake)
+add_definitions(-I/$ENV{IDF_PATH}//components/freertos/include/freertos/)
+add_definitions(-DBPP_PLATFORM_ESP32)

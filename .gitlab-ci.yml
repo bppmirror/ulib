@@ -1,0 +1,15 @@
+stages:
+    - test
+
+
+run_tests:
+    stage: test
+    script: 
+        - ./build_tests.sh
+        - export PATH="${PATH}:/usr/local/xtensa-esp32-elf/bin/"
+        - ./build_tests.sh esp32
+        - echo "===== PC =================="
+        - ./run_tests.sh
+        - cd ci
+        - echo "===== ESP32 =================="
+        - ./ci_esp.sh

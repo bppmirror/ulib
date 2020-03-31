@@ -1,0 +1,1 @@
+add_library(${TARGET} ${ULIB_SRC})

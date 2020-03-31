@@ -1,0 +1,8 @@
+#!/bin/sh
+./build.sh
+if [ $? -ne 0 ]; then
+    echo "Error while build"
+    exit $?
+fi
+./flash.sh
+./monitor.sh
