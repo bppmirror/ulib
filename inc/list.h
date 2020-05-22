@@ -117,6 +117,19 @@ private:
         //! Get pointer to list object
         List<T>* list(){return mpList;}
 
+        //! Check for the list end
+        bool atEnd()
+            {
+                BPP_ASSERT(mpList)
+                return (*this) == mpList->end();
+            }
+        //! Check for the list end
+        bool atConstEnd()
+            {
+                BPP_ASSERT(mpList)
+                return (*this) == mpList->constEnd();
+            }
+
         private:
              SListEntry* mpEntry;
              List<T>*    mpList;
