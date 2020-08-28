@@ -2,6 +2,7 @@
 #include "./log.h"
 #include "./list.h"
 #include <stdlib.h>
+#include <stdarg.h>
 
 namespace bpp
 {
@@ -79,6 +80,7 @@ public:
 
     size_t capacity();
     bool crop(size_t newBuffSize);
+    void sprintf(const char* fmt, ...);
 
     String &operator= (const String& str);
     String& operator= (const char* pStr);

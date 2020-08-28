@@ -363,6 +363,18 @@ size_t bpp::ulib::String::capacity()
     return mBuffSize;
 }
 
+void bpp::ulib::String::sprintf(const char *fmt, ...)
+{
+    va_list vl;
+    va_start(vl, fmt);
+    size_t sz = ::vsnprintf(nullptr, 0, fmt, vl);
+    resize(sz + 1);
+    va_end(vl);
+    va_start(vl, fmt);
+    ::vsnprintf(mpStr, mBuffSize, fmt, vl);
+    va_end(vl);
+}
+
 bpp::ulib::String &bpp::ulib::String::operator=(const bpp::ulib::String &str)
 {
     size_t len = str.length();
