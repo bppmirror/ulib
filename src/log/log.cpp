@@ -32,6 +32,10 @@ static bpp::LogOut logouts[]{
 
 #define COLOR_RESET "\033[0m"
 
+#define SECRET_WARNING_TXT (bpp::Log::WARNING,\
+                           "\nWARNING: Logging of secret or sensetive information is ENABLED for this build!\n",\
+                           true, COLOR_WARNING_MSG, COLOR_RESET)
+
 static bpp::Log::ELogLevel current_ll = bpp::Log::INFO;
 
 static bpp::Log::SColorEffects ce = bpp::Log::SColorEffects(false, false);
@@ -154,10 +158,16 @@ bool bpp::Log::removeOutputHandler(OutputHandler cb)
     return true;
 }
 
-
-
 void internal_out( bpp::Log::ELogLevel ll, const char* msg, bool isFlush, const char* preffix, const char* postfix)
 {
+#ifdef BPP_ENABLE_LOG_SECRET
+//    #pragma message("WARNING: Logging of secret or sensetive information is ENABLED for this build!")
+    static bool first_time = true;
+    if (first_time) {
+        first_time = false;
+        internal_out SECRET_WARNING_TXT;
+    }
+#endif
     if (!handlers.empty())
     {
         //pHandler(ll, msg, isFlush, preffix, postfix);

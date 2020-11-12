@@ -80,9 +80,6 @@ public:
 #define LOG  bpp::Log::ref()
 #define MSG  bpp::Log::ref()(bpp::Log::MESSAGE)
 
-
-
-
 class LogOut:public bpp::ulib::CStreamOps
 {
 public:
@@ -97,6 +94,10 @@ private:
     Log::ELogLevel mpLogLevel;
 };
 
-
+#ifdef BPP_ENABLE_LOG_SECRET
+    #define BPP_LOG_SECRET(val) (val)
+#else
+    #define BPP_LOG_SECRET(val) "[*#@!]"
+#endif
 
 }//namespace
