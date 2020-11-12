@@ -13,7 +13,7 @@ static void Basic()
     StrStream ss(&s1);
     ss<<"one"<<1;
 
-    BPP_TEST_CHECK(s1 == "aone1");    
+    BPP_TEST_CHECK(s1 == "aone1");
 }
 
 void testStrstream()

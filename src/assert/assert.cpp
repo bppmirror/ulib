@@ -16,16 +16,16 @@ void bpp::setAssertHandler(bpp::AssertCallback cb)
     pHandler = cb;
 }
 
-void bpp::trigerASSERT(const char* file, int line, const char* msg)
+void bpp::trigerASSERT(const char* file, int line, void *caller, const char* msg)
 {
     static char buf[ASSERT_OUT_BUFF_SIZE];
     if (msg)
     {
-        snprintf(buf, sizeof(buf), "ASSERT: %s:%d - %s\n", file, line, msg);
+        snprintf(buf, sizeof(buf), "ASSERT: %s:%d (%p) - %s\n", file, line, caller, msg);
     }
     else
     {
-        snprintf(buf, sizeof(buf), "ASSERT: %s:%d\n", file, line);
+        snprintf(buf, sizeof(buf), "ASSERT: %s:%d (%p)\n", file, line, caller);
     }
     if (!pHandler)
     {
